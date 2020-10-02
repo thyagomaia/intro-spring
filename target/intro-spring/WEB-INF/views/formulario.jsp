@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +8,13 @@
 <title>Exercício</title>
 </head>
 <body>
-	
-	<form method="POST">
-		<p>Nome: <input type="text" name="nome" /></p>
-		<p>Time: <input type="text" name="time" /></p>
-		<p><input type="submit" value="Enviar"></p>
+
+	<form:form method="POST" modelAttribute="torcedor" action="cadastro">
+		<p>Nome: <form:input path="nome" /></p>
+		<p>Time: <form:input path="time" /></p>
+		<p><form:button>Enviar</form:button></p>
 		<p>${mensagem}</p>
-	</form>
-	
+	</form:form>
+
 </body>
 </html>
