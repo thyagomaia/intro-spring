@@ -24,5 +24,9 @@ public class TorcedorDAO {
 	public List<Torcedor> getAll() { 
 		return torcedores; 
 	}
+	
+	public void excluir(int id) {
+		torcedores.remove(id);
+	}
 
 }

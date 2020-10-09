@@ -3,7 +3,9 @@ package br.com.unipe.aula.web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +19,10 @@ public class WelcomeController {
 	
 	@Autowired
 	private TorcedorDAO dao;
+	
+	public WelcomeController() {
+		dao = new TorcedorDAO();
+	}
 
 	@RequestMapping(value = "/teste", method = RequestMethod.GET)
 	public String welcome() {
@@ -50,11 +56,26 @@ public class WelcomeController {
 	@PostMapping(value = "/cadastro")
 	public ModelAndView cadastrarTorcedor(@ModelAttribute Torcedor torcedor) {
 		
-		dao = new TorcedorDAO();
 		dao.salvar(torcedor);
 		
 		ModelAndView view = new ModelAndView("formulario");
 		view.addObject("mensagem", "Torcedor cadastrado com sucesso!");
+		view.addObject("torcedores", dao.getAll());
+		
+		return view;
+	}
+	
+	@GetMapping(value = "/excluir/{id}")
+	public ModelAndView excluirTorcedor(@PathVariable("id") int id, Model model) {
+		
+		dao.excluir(id);
+		
+		ModelAndView view = new ModelAndView("formulario");
+		
+		view.addObject("mensagem", "Torcedor excluído com sucesso!");
+		view.addObject("torcedores", dao.getAll());
+		
+		model.addAttribute("torcedor", new Torcedor());
 		
 		return view;
 	}
