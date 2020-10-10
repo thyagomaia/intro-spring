@@ -25,6 +25,10 @@ public class TorcedorDAO {
 		return torcedores; 
 	}
 	
+	public Torcedor getId(int id) {
+		return torcedores.get(id);
+	}
+	
 	public void excluir(int id) {
 		torcedores.remove(id);
 	}

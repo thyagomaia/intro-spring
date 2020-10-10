@@ -65,17 +65,30 @@ public class WelcomeController {
 		return view;
 	}
 	
+	@GetMapping(value = "/cadastro")
+	public ModelAndView retornarAposExcluir(@ModelAttribute Torcedor torcedor) {
+		
+		ModelAndView view = new ModelAndView("formulario");
+		view.addObject("mensagem", "Torcedor cadastrado com sucesso!");
+		view.addObject("torcedores", dao.getAll());
+		
+		return view;
+	}
+	
 	@GetMapping(value = "/excluir/{id}")
-	public ModelAndView excluirTorcedor(@PathVariable("id") int id, Model model) {
+	public String excluirTorcedor(@PathVariable("id") int id, Model model) {
 		
 		dao.excluir(id);
 		
-		ModelAndView view = new ModelAndView("formulario");
+		return "redirect:../cadastro";
+	}
+	
+	@GetMapping(value = "/editar/{id}")
+	public ModelAndView editarTorcedor(@PathVariable("id") int id, Model model) {
 		
-		view.addObject("mensagem", "Torcedor excluído com sucesso!");
-		view.addObject("torcedores", dao.getAll());
-		
-		model.addAttribute("torcedor", new Torcedor());
+		ModelAndView view = new ModelAndView("editar");
+		view.addObject("id", id);
+		model.addAttribute("torcedor", dao.getId(id));
 		
 		return view;
 	}
