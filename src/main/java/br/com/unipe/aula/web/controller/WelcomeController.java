@@ -93,4 +93,13 @@ public class WelcomeController {
 		return view;
 	}
 	
+	@PostMapping(value = "/update/{id}")
+	public String updateTorcedor(@PathVariable("id") int id, @ModelAttribute Torcedor torcedor) {
+		
+		dao.editar(id, torcedor);
+		
+		return "redirect:../cadastro";
+		
+	}
+	
 }

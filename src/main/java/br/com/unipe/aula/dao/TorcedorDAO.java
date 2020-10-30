@@ -32,5 +32,10 @@ public class TorcedorDAO {
 	public void excluir(int id) {
 		torcedores.remove(id);
 	}
+	
+	public void editar(int id, Torcedor torcedor) {
+		torcedores.get(id).setNome(torcedor.getNome());
+		torcedores.get(id).setNome(torcedor.getTime());
+	}
 
 }

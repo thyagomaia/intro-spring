@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<form:form method="POST" modelAttribute="torcedor" action="update">
+	<form:form method="POST" modelAttribute="torcedor" action="../update/${id}">
 		<p>Nome: <form:input path="nome" /></p>
 		<p>Time: <form:input path="time" /></p>
 		<p><form:button>Enviar</form:button></p>
