@@ -76,7 +76,7 @@ public class WelcomeController {
 	}
 	
 	@GetMapping(value = "/excluir/{id}")
-	public String excluirTorcedor(@PathVariable("id") int id, Model model) {
+	public String excluirTorcedor(@PathVariable("id") Long id, Model model) {
 		
 		dao.excluir(id);
 		
@@ -84,7 +84,7 @@ public class WelcomeController {
 	}
 	
 	@GetMapping(value = "/editar/{id}")
-	public ModelAndView editarTorcedor(@PathVariable("id") int id, Model model) {
+	public ModelAndView editarTorcedor(@PathVariable("id") Long id, Model model) {
 		
 		ModelAndView view = new ModelAndView("editar");
 		view.addObject("id", id);

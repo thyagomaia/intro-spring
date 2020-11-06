@@ -35,12 +35,14 @@ public class TorcedorDAO {
 		return consulta.getResultList();
 	}
 	
-	public Torcedor getId(int id) {
-		return null;
+	public Torcedor getId(Long id) {
+		return entityManager.find(Torcedor.class, id);
 	}
 	
-	public void excluir(int id) {
-		
+	@Transactional(readOnly = false)
+	public void excluir(Long id) {
+		Torcedor torcedor = getId(id);
+		entityManager.remove(torcedor);
 	}
 	
 	public void editar(int id, Torcedor torcedor) {
