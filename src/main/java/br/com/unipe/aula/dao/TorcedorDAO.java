@@ -45,8 +45,9 @@ public class TorcedorDAO {
 		entityManager.remove(torcedor);
 	}
 	
-	public void editar(int id, Torcedor torcedor) {
-		
+	@Transactional(readOnly = false)
+	public void editar(Torcedor torcedor) {
+		entityManager.merge(torcedor);
 	}
 
 }
